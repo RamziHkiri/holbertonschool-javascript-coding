@@ -3,7 +3,7 @@ const f = require('fs');
 const fileName = process.argv[2];
 const string = process.argv[3];
 
-f.fstat.writeFile(fileName, string, 'utf-8', function (error) {
+f.writeFile(fileName, string, 'utf-8', function (error) {
   if (error) {
     console.error(error);
   }
