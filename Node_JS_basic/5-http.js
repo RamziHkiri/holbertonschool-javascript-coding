@@ -3,10 +3,12 @@ const fs = require('fs');
 
 const server = http.createServer((req, res) => {
   if (req.url === '/') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     fs.readFile(process.argv[2], 'utf8', (err, data) => {
       if (err) {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end('Internal Server Error');
       } else {
         const contents = data.trim().split('\n');
@@ -42,6 +44,7 @@ const server = http.createServer((req, res) => {
       }
     });
   } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
     res.end('Not Found');
   }
 });
