@@ -8,7 +8,7 @@ const server = http.createServer((req, res) => {
   } else if (req.url === '/students') {
     const database = process.argv[2];
     if (!database)
-      database = 'database.csv'
+      database = './database.csv';
     fs.readFile(database, 'utf8', (err, data) => {
       if (err) {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
