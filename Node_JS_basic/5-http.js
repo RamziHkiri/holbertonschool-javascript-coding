@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
         const students = contents.map((content) => content.split(','));
         const fields = {};
         res.write(('This is the list of our students\n'));
-        res.write((`Number of students: ${students.length - 1}\n`));
+        res.write((`Number of students: ${students.length - 1}`));
 
         students.forEach((student) => {
           const [firstname, , , field] = student;
@@ -41,7 +41,7 @@ const server = http.createServer((req, res) => {
         f.shift();
         for (const field in f) {
           if (Object.prototype.hasOwnProperty.call(f, field)) {
-            res.write(`Number of students in ${f[field]}: ${fields[f[field]].list.length}. List: ${fields[f[field]].list.join(', ')}\n`);
+            res.write(`\nNumber of students in ${f[field]}: ${fields[f[field]].list.length}. List: ${fields[f[field]].list.join(', ')}`);
           }
         }
         res.end();
