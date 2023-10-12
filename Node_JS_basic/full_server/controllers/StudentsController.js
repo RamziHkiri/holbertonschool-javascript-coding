@@ -37,6 +37,7 @@ class StudentsController {
     } catch (error) {
       return res.status(500).send(error.message);
     }
+    return (0);
   }
 
   static getAllStudentsByMajor(req, res) {
@@ -76,10 +77,12 @@ class StudentsController {
           default:
             return res.status(500).send('Major parameter must be CS or SWE');
         }
+        return (0);
       });
     } catch (error) {
       return res.status(500).send(error.message);
     }
+    return (0);
   }
 }
 
