@@ -1,7 +1,11 @@
 const readDatabase = require("../utils");
 class StudentsController {
   static getAllStudents(req, res) {
-    const students = readDatabase("database.csv");
+    try {
+        const students = readDatabase("database.csv");
+    } catch (error) {
+        return res.status(500).send(error.message);
+      }
     students.then((data) => {
         const fields = {};
         const printed = [];
@@ -37,7 +41,12 @@ class StudentsController {
 
   
   static getAllStudentsByMajor(req, res) {
-    const students = readDatabase("database.csv");
+    try {
+        const students = readDatabase("database.csv");
+    } catch (error) {
+        return res.status(500).send(error.message);
+      }
+    
     students.then((data) => {
         const { major } = req.params;
         const fields = {};
