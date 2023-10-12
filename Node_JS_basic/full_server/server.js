@@ -9,3 +9,4 @@ app.use("/", indexRoute);
 app.listen(PORT, () => {
     console.log("Server running");
 });
+export default app;
