@@ -1,13 +1,12 @@
-const readDatabase = require("../utils");
+const readDatabase = require('../utils');
+
 class StudentsController {
   static getAllStudents(req, res) {
     try {
-        const students = readDatabase("database.csv");
-   
-    students.then((data) => {
+      const students = readDatabase('database.csv');
+      students.then((data) => {
         const fields = {};
         const printed = [];
-  
         printed.push('This is the list of our students');
         printed.push(`Number of students: ${data.length - 1}`);
         data.forEach((student) => {
@@ -33,21 +32,17 @@ class StudentsController {
             printed.push(`Number of students in ${f[field]}: ${fields[f[field]].list.length}. List: ${fields[f[field]].list.join(', ')}`);
           }
         }
-        res.send(printed.join('\n'));
-        
-    });
-} catch (error) {
-    return res.status(500).send(error.message);
-  }
+        return res.send(printed.join('\n'));
+      });
+    } catch (error) {
+      return res.status(500).send(error.message);
     }
+  }
 
-  
   static getAllStudentsByMajor(req, res) {
     try {
-        const students = readDatabase("database.csv");
-   
-    
-    students.then((data) => {
+      const students = readDatabase('database.csv');
+      students.then((data) => {
         const { major } = req.params;
         const fields = {};
         const printed = [];
@@ -70,24 +65,22 @@ class StudentsController {
         }
         f.shift();
         switch (major) {
-            case "CS":
-              printed.push(`List: ${fields['CS'].list.join(', ')}`);
-              res.send(printed.join('\n'));
-            case "SWE":
-              printed.push(`List: ${fields['SWE'].list.join(', ')}`);
-              res.send(printed.join('\n'));
-              default:
-                return res.status(500).send("Major parameter must be CS or SWE");
-            }
-          
-          
-
-           
+          case 'CS':
+            printed.push(`List: ${fields.CS.list.join(', ')}`);
+            res.send(printed.join('\n'));
+            break;
+          case 'SWE':
+            printed.push(`List: ${fields.SWE.list.join(', ')}`);
+            res.send(printed.join('\n'));
+            break;
+          default:
+            return res.status(500).send('Major parameter must be CS or SWE');
+        }
       });
-       } catch (error) {
-        return res.status(500).send(error.message);
-      }
-}
+    } catch (error) {
+      return res.status(500).send(error.message);
+    }
+  }
 }
 
 module.exports = StudentsController;
