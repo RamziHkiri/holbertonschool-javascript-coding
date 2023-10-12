@@ -3,9 +3,7 @@ class StudentsController {
   static getAllStudents(req, res) {
     try {
         const students = readDatabase("database.csv");
-    } catch (error) {
-        return res.status(500).send(error.message);
-      }
+   
     students.then((data) => {
         const fields = {};
         const printed = [];
@@ -36,16 +34,18 @@ class StudentsController {
           }
         }
         res.send(printed.join('\n'));
+        
     });
+} catch (error) {
+    return res.status(500).send(error.message);
+  }
     }
 
   
   static getAllStudentsByMajor(req, res) {
     try {
         const students = readDatabase("database.csv");
-    } catch (error) {
-        return res.status(500).send(error.message);
-      }
+   
     
     students.then((data) => {
         const { major } = req.params;
@@ -84,6 +84,9 @@ class StudentsController {
 
            
       });
+       } catch (error) {
+        return res.status(500).send(error.message);
+      }
 }
 }
 
