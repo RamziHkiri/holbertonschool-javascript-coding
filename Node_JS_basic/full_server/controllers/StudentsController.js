@@ -1,11 +1,9 @@
-const { readDatabase } = require('./full_server/utils');
-
 class StudentsController {
   static getAllStudents(req, res) {
-    res.status(200).send('Hello Holberton School!');
+    res.status(200).send('get all students!');
   }
   static getAllStudentsByMajor(req, res) {
-    res.status(200).send('Hello Holberton School!');
+    res.status(200).send('get all students!MAJOR');
   }
 }
 
